@@ -7,18 +7,20 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "reports")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee {
+public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id",unique = true,nullable = false)
     private Long id;
-    @Column(name="name",nullable = false)
-    private String name;
-    @Column(name="dni",nullable = false)
-    private String dni;
+    @Column(name="description",nullable = false)
+    private String description;
+    //Ticket
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "service")
+    private List<UserRapiService> userRapiServices;
 
 }
