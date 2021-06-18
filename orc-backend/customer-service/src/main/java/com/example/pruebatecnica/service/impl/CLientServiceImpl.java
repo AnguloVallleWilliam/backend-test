@@ -128,7 +128,19 @@ public class CLientServiceImpl implements ClientService {
     }
 
     @Override
-    public Vehicle updateVehicle(Long vehicleId) {
-        return null;
+    public Vehicle updateVehicle(CreateVehicleDto createVehicleDto, Long vehicleId) throws VehicleNotFoundException {
+        Optional<Vehicle> vehicle = vehicleRepository.findById(vehicleId);
+        if(!vehicle.isPresent()){
+            throw  new VehicleNotFoundException("NOT_FOUND");
+        }
+        try{
+            Vehicle newVehicle = vehicle.get();
+            newVehicle.setPlaca(createVehicleDto.getPlaca());
+            newVehicle.setOfficial(false);
+            return vehicleRepository.save(newVehicle);
+
+        } catch (Exception e){
+            throw  new VehicleNotFoundException("NOT_FOUND");
+        }
     }
 }

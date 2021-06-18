@@ -31,6 +31,6 @@ public interface ClientService  {
     //Forest getForest
     //List<Vehicle> getVehicle();
     Vehicle createVehicle(CreateVehicleDto createVehicleDto, Long VehicleId) throws VehicleNotFoundException;
-    Vehicle updateVehicle(Long vehicleId);
+    Vehicle updateVehicle(CreateVehicleDto createVehicleDto, Long vehicleId) throws VehicleNotFoundException;
     //String deleteTicket(Long vehicleId);
 }
